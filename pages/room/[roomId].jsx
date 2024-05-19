@@ -23,8 +23,9 @@ export default function Room({}) {
   const { apartment, timestamps, reviews } = useSelector((states) => states.globalStates)
   const [qualifiedReviewers, setQualifiedReviewers] = useState([])
 
-  console.log('roomId', roomId);
+  console.log('roomId', roomId)
   useEffect(() => {
+    if (!roomId) return
     ;(async () => {
       const apartmentData = await getApartment(roomId)
       dispatch(setApartment(apartmentData))
@@ -32,6 +33,7 @@ export default function Room({}) {
   }, [])
 
   useEffect(() => {
+    if (!roomId) return
     ;(async () => {
       const timestampsData = await getBookedDates(roomId)
       dispatch(setTimestamps(timestampsData))
@@ -39,6 +41,7 @@ export default function Room({}) {
   }, [])
 
   useEffect(() => {
+    if (!roomId) return
     ;(async () => {
       const qualifiedReviewers = await getQualifiedReviewers(roomId)
       setQualifiedReviewers(qualifiedReviewers)
@@ -46,6 +49,7 @@ export default function Room({}) {
   }, [])
 
   useEffect(() => {
+    if (!roomId) return
     ;(async () => {
       const reviewsData = await getReviews(roomId)
       dispatch(setReviews(reviewsData))
@@ -53,6 +57,7 @@ export default function Room({}) {
   }, [])
 
   useEffect(() => {
+    if (!roomId) return
     ;(async () => {
       const securityFee = await getSecurityFee()
       dispatch(setSecurityFee(securityFee))
